@@ -3,4 +3,7 @@ targets:
     builders:
       estatesales_sdk:
         generate_for:
-          - lib/generated/*.dart
+          - lib/src/**/*.dart
+        generate_to:
+          'lib/generated':
+            source_dir: 'lib/src'
