@@ -3,4 +3,6 @@ targets:
     builders:
       estatesales_sdk:
         generate_for:
-          - estatesales_sdk/**.dart
+          - lib/src/**/*.dart
+          - lib/**/*.dart
+          - lib/**.dart
