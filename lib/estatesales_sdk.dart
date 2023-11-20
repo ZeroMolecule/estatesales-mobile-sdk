@@ -21,5 +21,5 @@ class EstateSalesSDK {
     instance = EstateSalesSDK(remote, store);
   }
 
-  static String version = '0.0.6';
+  static String version = '0.0.7';
 }
