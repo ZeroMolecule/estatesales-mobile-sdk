@@ -1,8 +1,9 @@
 import 'dart:collection';
 
-import 'package:estatesales_sdk/data/pagination.dart';
-import 'package:estatesales_sdk/remote/strapi/serializable.dart';
-import 'package:estatesales_sdk/remote/strapi/strapi_list.dart';
+import 'package:estatesales_sdk/domain/data/pagination.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/strapi.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/strapi_list.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class PaginatedList<T extends Serializable> with ListMixin<T> {
@@ -29,7 +30,7 @@ class PaginatedList<T extends Serializable> with ListMixin<T> {
     required T Function(Map<String, dynamic>) serialize,
   }) =>
       PaginatedList(
-        data: strapi.map(serialize).toList(),
+        data: strapi.map((json) => serialize(Strapi.parseData(json))).toList(),
         pagination: Pagination.fromStrapi(strapi.meta.pagination),
       );
 

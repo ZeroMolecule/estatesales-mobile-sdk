@@ -1,9 +1,10 @@
-import 'package:estatesales_sdk/remote/strapi/strapi_meta.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/strapi_meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pagination.freezed.dart';
+part 'pagination.g.dart';
 
-@Freezed(fromJson: false, toJson: false)
+@freezed
 class Pagination with _$Pagination {
   static const none = Pagination(
     page: 0,
@@ -27,4 +28,7 @@ class Pagination with _$Pagination {
         pageCount: pagination.pageCount,
         total: pagination.total,
       );
+
+  factory Pagination.fromJson(Map<String, Object?> json) =>
+      _$PaginationFromJson(json);
 }

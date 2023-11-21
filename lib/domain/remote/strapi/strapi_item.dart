@@ -1,4 +1,4 @@
-import 'package:estatesales_sdk/remote/strapi/serializable.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
 
 class StrapiItem<T extends Serializable> {
   final T data;

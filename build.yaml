@@ -1,8 +1,0 @@
-targets:
-  $default:
-    builders:
-      estatesales_sdk:
-        generate_for:
-          - lib/src/**/*.dart
-          - lib/**/*.dart
-          - lib/**.dart

@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:estatesales_sdk/remote/strapi/strapi_meta.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/strapi_meta.dart';
 
 class StrapiList with ListMixin<Map<String, dynamic>> {
   final List<Map<String, dynamic>> data;

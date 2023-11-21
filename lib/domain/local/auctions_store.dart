@@ -1,4 +1,4 @@
-import 'package:estatesales_sdk/data/auction.dart';
+import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,12 +9,12 @@ class AuctionsStore {
     return Hive.openBox<Auction>(_key);
   }
 
-  Future<void> add(Auction resource) async {
+  Future<void> put(Auction resource) async {
     final box = await _getBox();
     await box.put(resource.id, resource);
   }
 
-  Future<void> addAll(Iterable<Auction> auctions) async {
+  Future<void> putAll(Iterable<Auction> auctions) async {
     final box = await _getBox();
     await box.putAll(
       Map.fromEntries(auctions.map((e) => MapEntry(e.id, e))),
