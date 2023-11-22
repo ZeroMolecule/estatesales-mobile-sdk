@@ -17,3 +17,33 @@ class RemoteAssetEnhancedConverter
     return object.toJson();
   }
 }
+
+class RemoteAssetEnhancedListConverter
+    extends JsonConverter<List<RemoteAssetEnhanced>?, dynamic> {
+  const RemoteAssetEnhancedListConverter();
+
+  @override
+  List<RemoteAssetEnhanced>? fromJson(dynamic json) {
+    if (json is List) {
+      return json
+          .map(const RemoteAssetEnhancedConverter().fromJson)
+          .whereType<RemoteAssetEnhanced>()
+          .toList();
+    }
+    if (json is Map) {
+      return fromJson(json['data']);
+    }
+
+    return null;
+  }
+
+  @override
+  List<Map<String, dynamic>>? toJson(List<RemoteAssetEnhanced>? object) {
+    if (object == null) return null;
+
+    return object
+        .map((e) => const RemoteAssetEnhancedConverter().toJson(e))
+        .whereType<Map<String, dynamic>>()
+        .toList();
+  }
+}

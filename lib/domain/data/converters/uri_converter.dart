@@ -11,7 +11,7 @@ class UriConverter extends JsonConverter<Uri?, String?> {
     final uri = json == null ? null : Uri.tryParse(json);
     if (uri == null || !uri.isAbsolute) return uri;
 
-    return EstateSalesSDK.instance.api.baseUri.resolveUri(uri);
+    return EstateSalesSDK.instance.baseUri.resolveUri(uri);
   }
 
   @override

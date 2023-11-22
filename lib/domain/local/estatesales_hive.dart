@@ -1,10 +1,13 @@
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/auction_status.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
+import 'package:estatesales_sdk/domain/data/category.dart';
 import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
+import 'package:estatesales_sdk/domain/data/lot.dart';
+import 'package:estatesales_sdk/domain/data/lot_status.dart';
 import 'package:estatesales_sdk/domain/data/premium.dart';
 import 'package:estatesales_sdk/domain/data/rating.dart';
 import 'package:estatesales_sdk/domain/data/remote_asset_visibility.dart';
@@ -27,6 +30,9 @@ class EstateSalesHive {
   static const remoteAssetEnhancedTypeId = 111;
   static const auctionsStoreTypeId = 112;
   static const locationTypeId = 113;
+  static const lotTypeId = 114;
+  static const lotStatusTypeId = 115;
+  static const categoryTypeId = 116;
 
   late final AuctionsStore auctionsStore = AuctionsStore();
 
@@ -43,6 +49,9 @@ class EstateSalesHive {
     Hive.registerAdapter(RatingAdapter());
     Hive.registerAdapter(RemoteAssetVisibilityAdapter());
     Hive.registerAdapter(LocationAdapter());
+    Hive.registerAdapter(LotAdapter());
+    Hive.registerAdapter(LotStatusAdapter());
+    Hive.registerAdapter(CategoryAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());

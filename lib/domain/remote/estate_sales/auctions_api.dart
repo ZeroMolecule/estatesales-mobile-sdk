@@ -37,8 +37,11 @@ class AuctionsAPI extends __AuctionsAPI {
     );
   }
 
-  Future<Auction> findOne(int id) async {
-    final res = await _findOne(id, {'populate': 'photos.file'});
+  Future<Auction> findOne(
+    int id, {
+    AuctionsQuery query = const AuctionsQuery(),
+  }) async {
+    final res = await _findOne(id, query.toQuery());
 
     return Auction.fromJson(Strapi.parseData(res.raw));
   }
