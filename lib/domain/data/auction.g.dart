@@ -27,13 +27,14 @@ class AuctionAdapter extends TypeAdapter<Auction> {
       terms: fields[8] as String?,
       privacyPolicy: fields[9] as String?,
       company: fields[10] as Company?,
+      logo: fields[11] as RemoteAsset?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Auction obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class AuctionAdapter extends TypeAdapter<Auction> {
       ..writeByte(9)
       ..write(obj.privacyPolicy)
       ..writeByte(10)
-      ..write(obj.company);
+      ..write(obj.company)
+      ..writeByte(11)
+      ..write(obj.logo);
   }
 
   @override
@@ -85,6 +88,7 @@ _$AuctionImpl _$$AuctionImplFromJson(Map<String, dynamic> json) =>
       company: json['company'] == null
           ? null
           : Company.fromJson(json['company'] as Map<String, dynamic>),
+      logo: const RemoteAssetConverter().fromJson(json['logo']),
     );
 
 Map<String, dynamic> _$$AuctionImplToJson(_$AuctionImpl instance) =>
@@ -99,6 +103,7 @@ Map<String, dynamic> _$$AuctionImplToJson(_$AuctionImpl instance) =>
       'terms': instance.terms,
       'privacyPolicy': instance.privacyPolicy,
       'company': instance.company,
+      'logo': const RemoteAssetConverter().toJson(instance.logo),
     };
 
 const _$AuctionStatusEnumMap = {

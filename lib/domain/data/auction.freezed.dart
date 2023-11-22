@@ -40,6 +40,9 @@ mixin _$Auction {
   String? get privacyPolicy => throw _privateConstructorUsedError;
   @HiveField(10)
   Company? get company => throw _privateConstructorUsedError;
+  @RemoteAssetConverter()
+  @HiveField(11)
+  RemoteAsset? get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +64,8 @@ abstract class $AuctionCopyWith<$Res> {
       @HiveField(7) String? previewText,
       @HiveField(8) String? terms,
       @HiveField(9) String? privacyPolicy,
-      @HiveField(10) Company? company});
+      @HiveField(10) Company? company,
+      @RemoteAssetConverter() @HiveField(11) RemoteAsset? logo});
 
   $CompanyCopyWith<$Res>? get company;
 }
@@ -89,6 +93,7 @@ class _$AuctionCopyWithImpl<$Res, $Val extends Auction>
     Object? terms = freezed,
     Object? privacyPolicy = freezed,
     Object? company = freezed,
+    Object? logo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -131,6 +136,10 @@ class _$AuctionCopyWithImpl<$Res, $Val extends Auction>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as Company?,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as RemoteAsset?,
     ) as $Val);
   }
 
@@ -164,7 +173,8 @@ abstract class _$$AuctionImplCopyWith<$Res> implements $AuctionCopyWith<$Res> {
       @HiveField(7) String? previewText,
       @HiveField(8) String? terms,
       @HiveField(9) String? privacyPolicy,
-      @HiveField(10) Company? company});
+      @HiveField(10) Company? company,
+      @RemoteAssetConverter() @HiveField(11) RemoteAsset? logo});
 
   @override
   $CompanyCopyWith<$Res>? get company;
@@ -191,6 +201,7 @@ class __$$AuctionImplCopyWithImpl<$Res>
     Object? terms = freezed,
     Object? privacyPolicy = freezed,
     Object? company = freezed,
+    Object? logo = freezed,
   }) {
     return _then(_$AuctionImpl(
       id: null == id
@@ -233,6 +244,10 @@ class __$$AuctionImplCopyWithImpl<$Res>
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as Company?,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as RemoteAsset?,
     ));
   }
 }
@@ -250,7 +265,8 @@ class _$AuctionImpl implements _Auction {
       @HiveField(7) required this.previewText,
       @HiveField(8) required this.terms,
       @HiveField(9) required this.privacyPolicy,
-      @HiveField(10) required this.company});
+      @HiveField(10) required this.company,
+      @RemoteAssetConverter() @HiveField(11) required this.logo});
 
   factory _$AuctionImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuctionImplFromJson(json);
@@ -285,10 +301,14 @@ class _$AuctionImpl implements _Auction {
   @override
   @HiveField(10)
   final Company? company;
+  @override
+  @RemoteAssetConverter()
+  @HiveField(11)
+  final RemoteAsset? logo;
 
   @override
   String toString() {
-    return 'Auction(id: $id, title: $title, startDate: $startDate, endDate: $endDate, status: $status, description: $description, previewText: $previewText, terms: $terms, privacyPolicy: $privacyPolicy, company: $company)';
+    return 'Auction(id: $id, title: $title, startDate: $startDate, endDate: $endDate, status: $status, description: $description, previewText: $previewText, terms: $terms, privacyPolicy: $privacyPolicy, company: $company, logo: $logo)';
   }
 
   @override
@@ -309,13 +329,14 @@ class _$AuctionImpl implements _Auction {
             (identical(other.terms, terms) || other.terms == terms) &&
             (identical(other.privacyPolicy, privacyPolicy) ||
                 other.privacyPolicy == privacyPolicy) &&
-            (identical(other.company, company) || other.company == company));
+            (identical(other.company, company) || other.company == company) &&
+            (identical(other.logo, logo) || other.logo == logo));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, startDate, endDate,
-      status, description, previewText, terms, privacyPolicy, company);
+      status, description, previewText, terms, privacyPolicy, company, logo);
 
   @JsonKey(ignore: true)
   @override
@@ -342,7 +363,10 @@ abstract class _Auction implements Auction {
       @HiveField(7) required final String? previewText,
       @HiveField(8) required final String? terms,
       @HiveField(9) required final String? privacyPolicy,
-      @HiveField(10) required final Company? company}) = _$AuctionImpl;
+      @HiveField(10) required final Company? company,
+      @RemoteAssetConverter()
+      @HiveField(11)
+      required final RemoteAsset? logo}) = _$AuctionImpl;
 
   factory _Auction.fromJson(Map<String, dynamic> json) = _$AuctionImpl.fromJson;
 
@@ -376,6 +400,10 @@ abstract class _Auction implements Auction {
   @override
   @HiveField(10)
   Company? get company;
+  @override
+  @RemoteAssetConverter()
+  @HiveField(11)
+  RemoteAsset? get logo;
   @override
   @JsonKey(ignore: true)
   _$$AuctionImplCopyWith<_$AuctionImpl> get copyWith =>

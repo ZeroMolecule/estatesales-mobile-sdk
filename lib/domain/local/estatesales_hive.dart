@@ -20,6 +20,7 @@ class EstateSalesHive {
   static const commissionTypeId = 17 * 10;
   static const endTimeExtensionMethodTypeId = 18 * 10;
   static const ratingTypeId = 19 * 10;
+  static const remoteAssetVisibilityTypeId = 20 * 10;
 
   late final AuctionsStore auctionsStore = AuctionsStore();
 
