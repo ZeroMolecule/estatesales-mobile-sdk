@@ -8,7 +8,7 @@ part of 'premium.dart';
 
 class PremiumAdapter extends TypeAdapter<Premium> {
   @override
-  final int typeId = 16;
+  final int typeId = -16;
 
   @override
   Premium read(BinaryReader reader) {

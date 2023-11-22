@@ -8,7 +8,7 @@ part of 'auction.dart';
 
 class AuctionAdapter extends TypeAdapter<Auction> {
   @override
-  final int typeId = 11;
+  final int typeId = -11;
 
   @override
   Auction read(BinaryReader reader) {
