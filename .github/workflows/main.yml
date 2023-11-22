@@ -1,0 +1,47 @@
+name: Flutter Publish Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.8' # Specify your Flutter version
+
+      - name: Mirror to main-pub branch
+        run: |
+          git checkout -b main-pub || git checkout main-pub
+          git merge main
+
+      - name: Update .gitignore
+        run: |
+          sed -i '/\*.g.dart/d' .gitignore
+          sed -i '/\*.gen.dart/d' .gitignore
+          sed -i '/\*.freezed.dart/d' .gitignore
+          sed -i '/\*.gr.dart/d' .gitignore
+          sed -i '/\/lib\/generated/d' .gitignore
+          git add .gitignore
+          git commit -m "Update .gitignore for main-pub branch"
+
+      - name: Run build_runner
+        run: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+          git add .
+          git commit -m "Generate files with build_runner"
+
+      - name: Push changes
+        run: |
+          git push origin main-pub
