@@ -19,6 +19,7 @@ jobs:
         run: |
           git config user.name 'David Macan'
           git config user.email 'david.macan@zeromolecule.com'
+          git config pull.rebase false  # merge
 
       - name: Mirror to main-pub branch
         run: |
