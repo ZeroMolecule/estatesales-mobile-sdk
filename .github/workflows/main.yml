@@ -20,6 +20,11 @@ jobs:
         with:
           flutter-version: '3.13.8' # Specify your Flutter version
 
+      - name: Configure Git
+        run: |
+          git config user.name 'David Macan'
+          git config user.email 'david.macan@zeromolecule.com'
+
       - name: Mirror to main-pub branch
         run: |
           git checkout -b main-pub || git checkout main-pub
