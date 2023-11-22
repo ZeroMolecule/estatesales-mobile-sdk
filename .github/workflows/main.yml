@@ -36,7 +36,8 @@ jobs:
           sed -i '/\*.gr.dart/d' .gitignore
           sed -i '/\/lib\/generated/d' .gitignore
           git add .gitignore
-          git commit -m "Update .gitignore for main-pub branch"
+          git diff --staged --exit-code || git commit -m "Update .gitignore for main-pub branch"
+
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
