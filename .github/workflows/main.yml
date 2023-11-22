@@ -27,8 +27,10 @@ jobs:
 
       - name: Mirror to main-pub branch
         run: |
+          git fetch
           git checkout -b main-pub || git checkout main-pub
           git merge main
+          git reset --hard origin/main-pub
 
       - name: Update .gitignore
         run: |
