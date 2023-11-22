@@ -106,4 +106,5 @@ const _$AuctionStatusEnumMap = {
   AuctionStatus.notReady: 'notReady',
   AuctionStatus.completed: 'completed',
   AuctionStatus.archived: 'archived',
+  AuctionStatus.preview: 'preview',
 };

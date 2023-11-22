@@ -12,5 +12,7 @@ enum AuctionStatus {
   @HiveField(2)
   completed,
   @HiveField(3)
-  archived
+  archived,
+  @HiveField(4)
+  preview,
 }

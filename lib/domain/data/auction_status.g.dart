@@ -21,6 +21,8 @@ class AuctionStatusAdapter extends TypeAdapter<AuctionStatus> {
         return AuctionStatus.completed;
       case 3:
         return AuctionStatus.archived;
+      case 4:
+        return AuctionStatus.preview;
       default:
         return AuctionStatus.active;
     }
@@ -40,6 +42,9 @@ class AuctionStatusAdapter extends TypeAdapter<AuctionStatus> {
         break;
       case AuctionStatus.archived:
         writer.writeByte(3);
+        break;
+      case AuctionStatus.preview:
+        writer.writeByte(4);
         break;
     }
   }
