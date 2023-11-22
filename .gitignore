@@ -44,5 +44,9 @@ app.*.map.json
 /android/app/release
 
 .fvm/flutter_sdk
+*.gr.dart
+/lib/generated
+*.freezed.dart
+*.g.dart
 .env
 /lib/main.data.dart
