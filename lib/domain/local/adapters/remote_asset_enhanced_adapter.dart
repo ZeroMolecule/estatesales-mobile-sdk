@@ -4,15 +4,15 @@ import 'package:estatesales_sdk/domain/data/remote_asset.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class RemoteAssetAdapter extends TypeAdapter<RemoteAsset> {
+class RemoteAssetEnhancedAdapter extends TypeAdapter<RemoteAssetEnhanced> {
   @override
-  int get typeId => EstateSalesHive.remoteAssetTypeId;
+  int get typeId => EstateSalesHive.remoteAssetEnhancedTypeId;
 
   @override
-  RemoteAsset read(BinaryReader reader) {
+  RemoteAssetEnhanced read(BinaryReader reader) {
     final string = reader.readString();
 
-    return RemoteAsset.fromJson(jsonDecode(string));
+    return RemoteAsset.fromJson(jsonDecode(string)) as RemoteAssetEnhanced;
   }
 
   @override

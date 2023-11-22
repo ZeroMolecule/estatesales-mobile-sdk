@@ -8,7 +8,7 @@ part of 'auction.dart';
 
 class AuctionAdapter extends TypeAdapter<Auction> {
   @override
-  final int typeId = 110;
+  final int typeId = 101;
 
   @override
   Auction read(BinaryReader reader) {
@@ -88,7 +88,9 @@ _$AuctionImpl _$$AuctionImplFromJson(Map<String, dynamic> json) =>
       company: json['company'] == null
           ? null
           : Company.fromJson(json['company'] as Map<String, dynamic>),
-      logo: const RemoteAssetConverter().fromJson(json['logo']),
+      logo: json['logo'] == null
+          ? null
+          : RemoteAsset.fromJson(json['logo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AuctionImplToJson(_$AuctionImpl instance) =>
@@ -103,7 +105,7 @@ Map<String, dynamic> _$$AuctionImplToJson(_$AuctionImpl instance) =>
       'terms': instance.terms,
       'privacyPolicy': instance.privacyPolicy,
       'company': instance.company,
-      'logo': const RemoteAssetConverter().toJson(instance.logo),
+      'logo': instance.logo,
     };
 
 const _$AuctionStatusEnumMap = {

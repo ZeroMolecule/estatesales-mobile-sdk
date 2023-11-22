@@ -8,7 +8,7 @@ part of 'bid_increment.dart';
 
 class BidIncrementAdapter extends TypeAdapter<BidIncrement> {
   @override
-  final int typeId = 150;
+  final int typeId = 105;
 
   @override
   BidIncrement read(BinaryReader reader) {

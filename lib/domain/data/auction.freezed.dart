@@ -40,7 +40,6 @@ mixin _$Auction {
   String? get privacyPolicy => throw _privateConstructorUsedError;
   @HiveField(10)
   Company? get company => throw _privateConstructorUsedError;
-  @RemoteAssetConverter()
   @HiveField(11)
   RemoteAsset? get logo => throw _privateConstructorUsedError;
 
@@ -65,9 +64,10 @@ abstract class $AuctionCopyWith<$Res> {
       @HiveField(8) String? terms,
       @HiveField(9) String? privacyPolicy,
       @HiveField(10) Company? company,
-      @RemoteAssetConverter() @HiveField(11) RemoteAsset? logo});
+      @HiveField(11) RemoteAsset? logo});
 
   $CompanyCopyWith<$Res>? get company;
+  $RemoteAssetCopyWith<$Res>? get logo;
 }
 
 /// @nodoc
@@ -154,6 +154,18 @@ class _$AuctionCopyWithImpl<$Res, $Val extends Auction>
       return _then(_value.copyWith(company: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RemoteAssetCopyWith<$Res>? get logo {
+    if (_value.logo == null) {
+      return null;
+    }
+
+    return $RemoteAssetCopyWith<$Res>(_value.logo!, (value) {
+      return _then(_value.copyWith(logo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -174,10 +186,12 @@ abstract class _$$AuctionImplCopyWith<$Res> implements $AuctionCopyWith<$Res> {
       @HiveField(8) String? terms,
       @HiveField(9) String? privacyPolicy,
       @HiveField(10) Company? company,
-      @RemoteAssetConverter() @HiveField(11) RemoteAsset? logo});
+      @HiveField(11) RemoteAsset? logo});
 
   @override
   $CompanyCopyWith<$Res>? get company;
+  @override
+  $RemoteAssetCopyWith<$Res>? get logo;
 }
 
 /// @nodoc
@@ -266,7 +280,7 @@ class _$AuctionImpl implements _Auction {
       @HiveField(8) required this.terms,
       @HiveField(9) required this.privacyPolicy,
       @HiveField(10) required this.company,
-      @RemoteAssetConverter() @HiveField(11) required this.logo});
+      @HiveField(11) required this.logo});
 
   factory _$AuctionImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuctionImplFromJson(json);
@@ -302,7 +316,6 @@ class _$AuctionImpl implements _Auction {
   @HiveField(10)
   final Company? company;
   @override
-  @RemoteAssetConverter()
   @HiveField(11)
   final RemoteAsset? logo;
 
@@ -364,9 +377,7 @@ abstract class _Auction implements Auction {
       @HiveField(8) required final String? terms,
       @HiveField(9) required final String? privacyPolicy,
       @HiveField(10) required final Company? company,
-      @RemoteAssetConverter()
-      @HiveField(11)
-      required final RemoteAsset? logo}) = _$AuctionImpl;
+      @HiveField(11) required final RemoteAsset? logo}) = _$AuctionImpl;
 
   factory _Auction.fromJson(Map<String, dynamic> json) = _$AuctionImpl.fromJson;
 
@@ -401,7 +412,6 @@ abstract class _Auction implements Auction {
   @HiveField(10)
   Company? get company;
   @override
-  @RemoteAssetConverter()
   @HiveField(11)
   RemoteAsset? get logo;
   @override

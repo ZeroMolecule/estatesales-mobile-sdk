@@ -4,23 +4,29 @@ import 'package:estatesales_sdk/domain/data/bid_increment.dart';
 import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
+import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/premium.dart';
 import 'package:estatesales_sdk/domain/data/rating.dart';
+import 'package:estatesales_sdk/domain/data/remote_asset_visibility.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
+import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/auctions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class EstateSalesHive {
-  static const auctionTypeId = 11 * 10;
-  static const auctionStatusTypeId = 12 * 10;
-  static const companyTypeId = 13 * 10;
-  static const remoteAssetTypeId = 14 * 10;
-  static const bidIncrementTypeId = 15 * 10;
-  static const premiumTypeId = 16 * 10;
-  static const commissionTypeId = 17 * 10;
-  static const endTimeExtensionMethodTypeId = 18 * 10;
-  static const ratingTypeId = 19 * 10;
-  static const remoteAssetVisibilityTypeId = 20 * 10;
+  static const auctionTypeId = 101;
+  static const auctionStatusTypeId = 102;
+  static const companyTypeId = 103;
+  static const remoteAssetTypeId = 104;
+  static const bidIncrementTypeId = 105;
+  static const premiumTypeId = 106;
+  static const commissionTypeId = 107;
+  static const endTimeExtensionMethodTypeId = 108;
+  static const ratingTypeId = 109;
+  static const remoteAssetVisibilityTypeId = 110;
+  static const remoteAssetEnhancedTypeId = 111;
+  static const auctionsStoreTypeId = 112;
+  static const locationTypeId = 113;
 
   late final AuctionsStore auctionsStore = AuctionsStore();
 
@@ -35,8 +41,11 @@ class EstateSalesHive {
     Hive.registerAdapter(CommissionAdapter());
     Hive.registerAdapter(EndTimeExtensionMethodAdapter());
     Hive.registerAdapter(RatingAdapter());
+    Hive.registerAdapter(RemoteAssetVisibilityAdapter());
+    Hive.registerAdapter(LocationAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());
+    Hive.registerAdapter(RemoteAssetEnhancedAdapter());
   }
 }

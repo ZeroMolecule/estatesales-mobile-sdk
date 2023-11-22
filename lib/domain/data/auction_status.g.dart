@@ -8,7 +8,7 @@ part of 'auction_status.dart';
 
 class AuctionStatusAdapter extends TypeAdapter<AuctionStatus> {
   @override
-  final int typeId = 120;
+  final int typeId = 102;
 
   @override
   AuctionStatus read(BinaryReader reader) {

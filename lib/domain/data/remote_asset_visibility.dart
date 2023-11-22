@@ -1,6 +1,8 @@
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+part 'remote_asset_visibility.g.dart';
+
 @HiveType(typeId: EstateSalesHive.remoteAssetVisibilityTypeId)
 enum RemoteAssetVisibility {
   @HiveField(0)

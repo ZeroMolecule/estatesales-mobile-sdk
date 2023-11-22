@@ -1,6 +1,5 @@
 import 'package:estatesales_sdk/domain/data/auction_status.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
-import 'package:estatesales_sdk/domain/data/converters/remote_asset_converter.dart';
 import 'package:estatesales_sdk/domain/data/remote_asset.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
@@ -24,7 +23,7 @@ class Auction with _$Auction, Serializable {
     @HiveField(8) required String? terms,
     @HiveField(9) required String? privacyPolicy,
     @HiveField(10) required Company? company,
-    @RemoteAssetConverter() @HiveField(11) required RemoteAsset? logo,
+    @HiveField(11) required RemoteAsset? logo,
   }) = _Auction;
 
   factory Auction.fromJson(Map<String, Object?> json) =>
