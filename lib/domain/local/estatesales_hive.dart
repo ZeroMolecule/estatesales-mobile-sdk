@@ -24,7 +24,7 @@ class EstateSalesHive {
   late final AuctionsStore auctionsStore = AuctionsStore();
 
   static Future<void> init() async {
-    await Hive.initFlutter();
+    await Hive.initFlutter('estatesales_sdk');
     // generated
     Hive.registerAdapter(AuctionAdapter());
     Hive.registerAdapter(AuctionStatusAdapter());
