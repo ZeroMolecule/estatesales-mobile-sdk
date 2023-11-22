@@ -9,7 +9,7 @@ part of 'end_time_extension_method.dart';
 class EndTimeExtensionMethodAdapter
     extends TypeAdapter<EndTimeExtensionMethod> {
   @override
-  final int typeId = -18;
+  final int typeId = 180;
 
   @override
   EndTimeExtensionMethod read(BinaryReader reader) {

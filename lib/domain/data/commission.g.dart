@@ -8,7 +8,7 @@ part of 'commission.dart';
 
 class CommissionAdapter extends TypeAdapter<Commission> {
   @override
-  final int typeId = -17;
+  final int typeId = 170;
 
   @override
   Commission read(BinaryReader reader) {

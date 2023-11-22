@@ -11,15 +11,15 @@ import 'package:estatesales_sdk/domain/local/auctions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class EstateSalesHive {
-  static const auctionTypeId = -11;
-  static const auctionStatusTypeId = -12;
-  static const companyTypeId = -13;
-  static const remoteAssetTypeId = -14;
-  static const bidIncrementTypeId = -15;
-  static const premiumTypeId = -16;
-  static const commissionTypeId = -17;
-  static const endTimeExtensionMethodTypeId = -18;
-  static const ratingTypeId = -19;
+  static const auctionTypeId = 11 * 10;
+  static const auctionStatusTypeId = 12 * 10;
+  static const companyTypeId = 13 * 10;
+  static const remoteAssetTypeId = 14 * 10;
+  static const bidIncrementTypeId = 15 * 10;
+  static const premiumTypeId = 16 * 10;
+  static const commissionTypeId = 17 * 10;
+  static const endTimeExtensionMethodTypeId = 18 * 10;
+  static const ratingTypeId = 19 * 10;
 
   late final AuctionsStore auctionsStore = AuctionsStore();
 
