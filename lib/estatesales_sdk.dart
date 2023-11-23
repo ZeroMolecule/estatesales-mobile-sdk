@@ -5,11 +5,14 @@ import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
 import 'package:estatesales_sdk/domain/repository/auction_repository.dart';
 import 'package:estatesales_sdk/domain/repository/lot_repository.dart';
 import 'package:estatesales_sdk/domain/repository/session_repository.dart';
+import 'package:estatesales_sdk/theme/estatesales_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EstateSalesSDK {
   static late final EstateSalesSDK instance;
   final EstateSalesAPI _api;
   final EstateSalesHive _hive;
+  final EstateSalesTheme theme;
 
   final Uri baseUri;
 
@@ -17,7 +20,7 @@ class EstateSalesSDK {
   late final lotRepository = LotRepository(_api);
   late final sessionRepository = SessionRepository(_api, _hive);
 
-  EstateSalesSDK(this._api, this._hive, this.baseUri);
+  EstateSalesSDK(this._api, this._hive, this.baseUri, this.theme);
 
   static Future<void> initialize({
     required Uri baseUri,
@@ -27,6 +30,13 @@ class EstateSalesSDK {
     const hive = EstateSalesHive();
     final remote = EstateSalesAPI(baseUri);
 
-    instance = EstateSalesSDK(remote, hive, baseUri);
+    await GoogleFonts.pendingFonts([GoogleFonts.openSans()]);
+
+    instance = EstateSalesSDK(
+      remote,
+      hive,
+      baseUri,
+      EstateSalesTheme(),
+    );
   }
 }
