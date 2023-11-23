@@ -21,6 +21,20 @@ class SessionsStore {
     return box.get(_currentSessionKey);
   }
 
+  Stream<Session?> watch() async* {
+    final box = await _getBox();
+
+    yield await get();
+    yield* box.watch(key: _currentSessionKey).asyncMap(
+      (event) async {
+        if (event.value is Session) {
+          return event.value;
+        }
+        return get();
+      },
+    );
+  }
+
   Future<void> delete() async {
     final box = await _getBox();
     await box.delete(_currentSessionKey);

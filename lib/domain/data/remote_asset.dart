@@ -21,7 +21,7 @@ sealed class RemoteAsset with _$RemoteAsset {
     @HiveField(0) required int id,
     @HiveField(2) int? order,
     @HiveField(3) RemoteAssetVisibility? visibility,
-    @UriConverter() Uri? uri,
+    @UriConverter() Uri? uriOrNull,
     @UriConverter() Uri? thumbnailOrNull,
     @UriConverter() Uri? smallOrNull,
     @UriConverter() Uri? mediumOrNull,
@@ -29,13 +29,13 @@ sealed class RemoteAsset with _$RemoteAsset {
   }) = RemoteAssetEnhanced;
 
   factory RemoteAsset.fromJson(Map<String, Object?> json) {
-    if (json.containsKey('id')) {
+    if (json.containsKey('file')) {
       final file = _extractFile(json['file']);
       return RemoteAsset.enhanced(
         id: json['id'] as int,
         order: json['order'] as int?,
         visibility: _extractVisibility(json['visibility']),
-        uri: _extractUri(json),
+        uriOrNull: _extractUri(file),
         thumbnailOrNull: _extractUri(file, 'thumbnail'),
         smallOrNull: _extractUri(file, 'small'),
         mediumOrNull: _extractUri(file, 'medium'),
@@ -50,6 +50,26 @@ sealed class RemoteAsset with _$RemoteAsset {
       largeOrNull: _extractUri(json, 'large'),
     );
   }
+
+  Uri? get uriOrNull {
+    return when(
+      (uri, _, __, ___, ____) => uri,
+      enhanced: (_, __, ___, uriOrNull, ____, _____, ______, _______) =>
+          uriOrNull,
+    );
+  }
+
+  Uri get requireUri {
+    return uriOrNull!;
+  }
+
+  Uri get thumbnail => thumbnailOrNull ?? requireUri;
+
+  Uri get small => smallOrNull ?? requireUri;
+
+  Uri get medium => mediumOrNull ?? requireUri;
+
+  Uri get large => largeOrNull ?? requireUri;
 
   Map<String, dynamic> toJson() {
     return when(

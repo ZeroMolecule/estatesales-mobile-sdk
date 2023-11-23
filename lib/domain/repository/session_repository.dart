@@ -34,6 +34,10 @@ class SessionRepository {
     return _hive.sessionStore.get();
   }
 
+  Stream<Session?> watch() {
+    return _hive.sessionStore.watch();
+  }
+
   Future<void> delete() {
     return _hive.sessionStore.delete();
   }

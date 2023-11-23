@@ -15,6 +15,7 @@ import 'package:estatesales_sdk/domain/data/session.dart';
 import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
+import 'package:estatesales_sdk/domain/local/adapters/user_role_adapter.dart';
 import 'package:estatesales_sdk/domain/local/auctions_store.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -65,10 +66,10 @@ class EstateSalesHive {
     Hive.registerAdapter(SessionAdapter());
     Hive.registerAdapter(UserAdapter());
     Hive.registerAdapter(UserTypeAdapter());
-    Hive.registerAdapter(UserRoleAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());
     Hive.registerAdapter(RemoteAssetEnhancedAdapter());
+    Hive.registerAdapter(UserRoleAdapter());
   }
 }

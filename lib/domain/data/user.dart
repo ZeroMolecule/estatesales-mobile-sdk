@@ -46,12 +46,70 @@ enum UserType {
   masterAdmin;
 }
 
-@HiveType(typeId: EstateSalesHive.userRoleTypeId)
-enum UserRole {
-  @HiveField(0)
-  bidder,
-  @HiveField(1)
-  consignor,
-  @HiveField(2)
-  administrator,
+@Freezed(fromJson: false, toJson: false)
+class UserRole with _$UserRole {
+  const UserRole._();
+
+  const factory UserRole.bidder({
+    required int id,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) = BidderRole;
+
+  const factory UserRole.consignor({
+    required int id,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) = ConsignorRole;
+
+  const factory UserRole.administrator({
+    required int id,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) = AdministratorRole;
+
+  String get value => map(
+        bidder: (_) => 'bidder',
+        consignor: (_) => 'consignor',
+        administrator: (_) => 'administrator',
+      );
+
+  factory UserRole.fromJson(Map<String, Object?> json) {
+    final id = json['id'] as int;
+    final value = json['value'] as String;
+    final createdAt = DateTime.parse(json['createdAt'] as String);
+    final updatedAt = DateTime.parse(json['updatedAt'] as String);
+
+    switch (value) {
+      case 'bidder':
+        return BidderRole(
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+        );
+      case 'consignor':
+        return ConsignorRole(
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+        );
+      case 'administrator':
+        return AdministratorRole(
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+        );
+      default:
+        throw Exception('Unknown user role value: $value');
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'value': value,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+    };
+  }
 }
