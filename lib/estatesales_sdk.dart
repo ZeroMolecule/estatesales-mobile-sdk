@@ -14,7 +14,7 @@ class EstateSalesSDK {
   final Uri baseUri;
 
   late final auctionRepository = AuctionRepository(_api);
-  late final lotsRepository = LotRepository(_api);
+  late final lotRepository = LotRepository(_api);
   late final sessionRepository = SessionRepository(_api, _hive);
 
   EstateSalesSDK(this._api, this._hive, this.baseUri);
