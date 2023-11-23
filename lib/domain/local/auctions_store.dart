@@ -5,6 +5,8 @@ import 'package:rxdart/rxdart.dart';
 class AuctionsStore {
   static const _key = 'auction';
 
+  const AuctionsStore();
+
   Future<Box<Auction>> _getBox() {
     return Hive.openBox<Auction>(_key);
   }

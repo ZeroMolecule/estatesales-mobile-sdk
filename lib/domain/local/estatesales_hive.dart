@@ -11,9 +11,12 @@ import 'package:estatesales_sdk/domain/data/lot_status.dart';
 import 'package:estatesales_sdk/domain/data/premium.dart';
 import 'package:estatesales_sdk/domain/data/rating.dart';
 import 'package:estatesales_sdk/domain/data/remote_asset_visibility.dart';
+import 'package:estatesales_sdk/domain/data/session.dart';
+import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/auctions_store.dart';
+import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class EstateSalesHive {
@@ -33,8 +36,15 @@ class EstateSalesHive {
   static const lotTypeId = 114;
   static const lotStatusTypeId = 115;
   static const categoryTypeId = 116;
+  static const sessionTypeId = 117;
+  static const userTypeId = 118;
+  static const userTypeTypeId = 119;
+  static const userRoleTypeId = 120;
 
-  late final AuctionsStore auctionsStore = AuctionsStore();
+  final AuctionsStore auctionsStore = const AuctionsStore();
+  final SessionsStore sessionStore = const SessionsStore();
+
+  const EstateSalesHive();
 
   static Future<void> init() async {
     await Hive.initFlutter('estatesales_sdk');
@@ -52,6 +62,10 @@ class EstateSalesHive {
     Hive.registerAdapter(LotAdapter());
     Hive.registerAdapter(LotStatusAdapter());
     Hive.registerAdapter(CategoryAdapter());
+    Hive.registerAdapter(SessionAdapter());
+    Hive.registerAdapter(UserAdapter());
+    Hive.registerAdapter(UserTypeAdapter());
+    Hive.registerAdapter(UserRoleAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());

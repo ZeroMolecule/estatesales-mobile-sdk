@@ -1,22 +1,37 @@
 import 'package:dio/dio.dart';
+import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales/auctions_api.dart';
+import 'package:estatesales_sdk/domain/remote/estate_sales/auth_api.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales/lots_api.dart';
+import 'package:estatesales_sdk/domain/remote/estate_sales/users_api.dart';
+import 'package:estatesales_sdk/domain/remote/interceptors/auth_interceptor_wrapper.dart';
 
 class EstateSalesAPI {
-  final Dio _dio;
-  final Uri _baseUri;
+  final AuctionsAPI auctions;
+  final LotsAPI lots;
+  final AuthAPI auth;
+  final UsersAPI users;
 
-  late final auctionsAPI = AuctionsAPI(_dio);
-  late final lotsAPI = LotsAPI(_dio);
+  const EstateSalesAPI._(this.auctions, this.lots, this.auth, this.users);
 
-  EstateSalesAPI(this._baseUri)
-      : _dio = Dio(
-          BaseOptions(
-            baseUrl: _baseUri.toString(),
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-            },
-          ),
-        );
+  factory EstateSalesAPI(Uri baseUri) {
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: baseUri.toString(),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      ),
+    )..interceptors.add(
+        AuthInterceptorsWrapper(const SessionsStore()),
+      );
+
+    final auctions = AuctionsAPI(dio);
+    final lots = LotsAPI(dio);
+    final auth = AuthAPI(dio);
+    final users = UsersAPI(dio);
+
+    return EstateSalesAPI._(auctions, lots, auth, users);
+  }
 }

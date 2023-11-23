@@ -1,20 +1,18 @@
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/paginated_list.dart';
-import 'package:estatesales_sdk/domain/local/auctions_store.dart';
 import 'package:estatesales_sdk/domain/query/auctions_query.dart';
-import 'package:estatesales_sdk/domain/remote/estate_sales/auctions_api.dart';
+import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
 
 class AuctionRepository {
-  final AuctionsAPI _auctionsAPI;
-  final AuctionsStore _auctionStore;
+  final EstateSalesAPI _api;
 
-  AuctionRepository(this._auctionsAPI, this._auctionStore);
+  const AuctionRepository(this._api);
 
   Future<PaginatedList<Auction>> find(AuctionsQuery query) async {
-    return _auctionsAPI.find(query);
+    return _api.auctions.find(query);
   }
 
   Future<Auction> findOne(int id) async {
-    return _auctionsAPI.findOne(id);
+    return _api.auctions.findOne(id);
   }
 }
