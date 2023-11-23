@@ -49,7 +49,7 @@ jobs:
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
           git add .
-          git commit -m "Generate files with build_runner"
+          git diff --staged --exit-code || git commit -m "Generate files with build_runner"
 
       - name: Push changes
         run: |
