@@ -15,10 +15,11 @@ class EstateSalesTheme {
 
   factory EstateSalesTheme() {
     final themeData = ThemeData(
-      colorScheme: ColorScheme.fromSwatch().copyWith(
+      colorScheme: const ColorScheme.light().copyWith(
         primary: EstateSalesColors.primary,
         error: EstateSalesColors.error,
         onPrimary: Colors.white,
+        background: EstateSalesColors.primary,
       ),
       textTheme: GoogleFonts.openSansTextTheme(
         TextTheme(
