@@ -19,7 +19,6 @@ class EstateSalesTheme {
         primary: EstateSalesColors.primary,
         error: EstateSalesColors.error,
         onPrimary: Colors.white,
-        background: EstateSalesColors.primary,
       ),
       textTheme: GoogleFonts.openSansTextTheme(
         TextTheme(
@@ -94,6 +93,8 @@ class EstateSalesTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: EstateSalesColors.primary,
+          foregroundColor: Colors.white,
           minimumSize: const Size(0, 48),
           textStyle: _bodyLarge,
           shape: RoundedRectangleBorder(
