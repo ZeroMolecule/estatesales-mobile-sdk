@@ -20,9 +20,13 @@ class BidsAPI extends __BidsAPI {
     required double amount,
   }) {
     return _create({
-      'lot': lotId,
-      'bidder': bidderId,
-      'amount': amount,
+      'data': {
+        'attributes': {
+          'lot': lotId,
+          'bidder': bidderId,
+          'amount': amount,
+        },
+      },
     });
   }
 }
