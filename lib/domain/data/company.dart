@@ -1,4 +1,5 @@
 import 'package:estatesales_sdk/domain/data/rating.dart';
+import 'package:estatesales_sdk/domain/data/remote_asset.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,6 +24,8 @@ class Company with _$Company, Serializable {
     @HiveField(7) @Default(false) bool hideClosedLots,
     @HiveField(8) @Default(true) bool enabled,
     @HiveField(9) @Default(Rating.zero) Rating rating,
+    @HiveField(10) RemoteAsset? photo,
+    @HiveField(11) RemoteAsset? cover,
   }) = _Company;
 
   factory Company.fromJson(Map<String, Object?> json) =>

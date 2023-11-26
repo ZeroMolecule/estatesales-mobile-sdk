@@ -48,6 +48,8 @@ class LotsQuery with _$LotsQuery, Query {
         'sort': ['order:asc'],
         'populate': {'file': true}
       },
+      'location': true,
+      'watchers': true,
     };
   }
 }

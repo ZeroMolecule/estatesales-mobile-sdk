@@ -14,11 +14,12 @@ class User with _$User {
   const factory User({
     @HiveField(0) required int id,
     @HiveField(1) required String email,
-    @HiveField(2) @JsonKey(defaultValue: '') required String firstName,
-    @HiveField(3) @JsonKey(defaultValue: '') required String lastName,
+    @HiveField(2) @Default('') String firstName,
+    @HiveField(3) @Default('') String lastName,
     @HiveField(4) UserType? type,
     @HiveField(5) List<UserRole>? roles,
     @HiveField(6) Company? company,
+    @HiveField(7) @Default('') String uuid,
   }) = _User;
 
   String get name {

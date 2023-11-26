@@ -19,7 +19,7 @@ abstract class _LotsAPI {
     @Queries() Map<String, dynamic> queries,
   );
 
-  @GET('/lots/{id}')
+  @GET('/auction-single-lot/{id}')
   Future<StrapiResponse> _findOne(
     @Path('id') int id,
     @Queries() Map<String, dynamic> queries,

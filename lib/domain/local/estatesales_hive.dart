@@ -6,7 +6,6 @@ import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
-import 'package:estatesales_sdk/domain/data/lot.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
 import 'package:estatesales_sdk/domain/data/premium.dart';
 import 'package:estatesales_sdk/domain/data/rating.dart';
@@ -16,7 +15,6 @@ import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/user_role_adapter.dart';
-import 'package:estatesales_sdk/domain/local/auctions_store.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -41,8 +39,11 @@ class EstateSalesHive {
   static const userTypeId = 118;
   static const userTypeTypeId = 119;
   static const userRoleTypeId = 120;
+  static const lotWatchersTypeId = 121;
+  static const lotBidsTypeId = 122;
+  static const lotHighestBidTypeId = 123;
+  static const lotHighestBidBidderTypeId = 124;
 
-  final AuctionsStore auctionsStore = const AuctionsStore();
   final SessionsStore sessionStore = const SessionsStore();
 
   const EstateSalesHive();
@@ -60,7 +61,6 @@ class EstateSalesHive {
     Hive.registerAdapter(RatingAdapter());
     Hive.registerAdapter(RemoteAssetVisibilityAdapter());
     Hive.registerAdapter(LocationAdapter());
-    Hive.registerAdapter(LotAdapter());
     Hive.registerAdapter(LotStatusAdapter());
     Hive.registerAdapter(CategoryAdapter());
     Hive.registerAdapter(SessionAdapter());

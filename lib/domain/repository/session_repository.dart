@@ -15,6 +15,8 @@ class SessionRepository {
     await delete();
     final session = await _api.auth.login(email: email, password: password);
     await _hive.sessionStore.put(session);
+    final user = await _api.users.me();
+    await _hive.sessionStore.put(session.copyWith(user: user));
     return session;
   }
 
