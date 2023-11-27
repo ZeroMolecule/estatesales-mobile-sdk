@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:estatesales_sdk/domain/data/pagination.dart';
+import 'package:estatesales_sdk/domain/query/pagination_query.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/strapi.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/strapi_list.dart';
@@ -32,6 +33,14 @@ class PaginatedList<T extends Serializable> with ListMixin<T> {
       PaginatedList(
         data: strapi.map((json) => serialize(Strapi.parseData(json))).toList(),
         pagination: Pagination.fromStrapi(strapi.meta.pagination),
+      );
+
+  bool get isComplete =>
+      pagination.page >= pagination.pageCount || pagination.pageSize == 0;
+
+  PaginationQuery nextPageQuery({int pageSize = 25}) => PaginationQuery(
+        page: pagination.page + 1,
+        pageSize: pageSize,
       );
 
   PaginatedList<T> copyWith({
