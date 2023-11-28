@@ -20,6 +20,21 @@ class EstateSalesSocketService {
   Stream<BidMeta> watchBidUpdated() {
     return _socket.watch('bid_updated', mapData: _mapBidMeta).whereNotNull();
   }
+
+  Stream<BidMeta> watchBidChanges({
+    Iterable<int>? lotIds,
+    Iterable<int>? auctionIds,
+  }) {
+    return Rx.merge([
+      watchBidCreated(),
+      watchBidUpdated(),
+    ]).where((meta) {
+      if (lotIds == null && auctionIds == null) return true;
+
+      return lotIds?.contains(meta.lotId) == true ||
+          auctionIds?.contains(meta.auctionId) == true;
+    });
+  }
 }
 
 BidMeta? _mapBidMeta(dynamic value) {
