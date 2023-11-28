@@ -20,20 +20,33 @@ class BidMeta with _$BidMeta {
       _$BidMetaFromJson(json);
 
   factory BidMeta.fromSocket(Map<String, dynamic> json) {
-    final lotBid = json['lot_bid'].toString();
-    final regex = RegExp(_lotBidPattern);
-    final match = regex.firstMatch(lotBid);
-    final lotId = int.parse(match!.group(1)!);
-    final auctionId = int.parse(match.group(2)!);
+    final record = _parseLotBidId(json['lot_bid'] as String);
 
     return BidMeta.fromJson({
       ...json,
       'createdAt': json['created_at'],
       'updatedAt': json['updated_at'],
-      'lotId': lotId,
-      'auctionId': auctionId,
+      'lotId': record.lotId,
+      'auctionId': record.auctionId,
     });
   }
 }
 
-const _lotBidPattern = r'(?:[a-zA-Z-]*)(\d+)-(\d+)';
+const _lotBidPattern = r'(?:proxy-lot-)?(\d+)-(\d+)-([\d.]+)-(\d+)';
+
+({
+  int auctionId,
+  int lotId,
+  double amount,
+  int bidderId,
+}) _parseLotBidId(String lotBid) {
+  final regExp = RegExp(_lotBidPattern);
+  final match = regExp.firstMatch(lotBid)!;
+
+  return ((
+    auctionId: int.parse(match.group(1)!),
+    lotId: int.parse(match.group(2)!),
+    amount: double.parse(match.group(3)!),
+    bidderId: int.parse(match.group(4)!),
+  ));
+}
