@@ -9,8 +9,12 @@ class EstateSalesSocketService {
 
   EstateSalesSocketService(this._socket);
 
-  Future<void> join() async {
-    await _socket.send('join', 'bid');
+  Future<void> join(String room) async {
+    await _socket.send('join', room);
+  }
+
+  Future<void> leave(String room) async {
+    await _socket.send('leave', room);
   }
 
   Stream<BidMeta> watchBidCreated() {
@@ -25,15 +29,7 @@ class EstateSalesSocketService {
     Iterable<int>? lotIds,
     Iterable<int>? auctionIds,
   }) {
-    return Rx.merge([
-      watchBidCreated(),
-      watchBidUpdated(),
-    ]).where((meta) {
-      if (lotIds == null && auctionIds == null) return true;
-
-      return lotIds?.contains(meta.lotId) == true ||
-          auctionIds?.contains(meta.auctionId) == true;
-    });
+    return Rx.merge([watchBidCreated(), watchBidUpdated()]);
   }
 }
 
