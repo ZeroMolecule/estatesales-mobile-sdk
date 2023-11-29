@@ -35,6 +35,8 @@ class Lot with _$Lot, Serializable {
   }) = _Lot;
 
   factory Lot.fromJson(Map<String, Object?> json) => _$LotFromJson(json);
+
+  bool get isSoldOut => status == LotStatus.completed;
 }
 
 @freezed
@@ -71,8 +73,8 @@ class HighestBid with _$HighestBid {
   const HighestBid._();
 
   const factory HighestBid({
-    required double value,
-    required HighestBidBidder bidder,
+    @Default(0.0) double value,
+    required HighestBidBidder? bidder,
   }) = _HighestBid;
 
   factory HighestBid.fromJson(Map<String, Object?> json) =>
