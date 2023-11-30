@@ -15,6 +15,9 @@ class UserDashboard with _$UserDashboard {
     @Default(0) int auctionsCount,
     @Default(0) int runningTotal,
   }) = _UserDashboard;
+
+  factory UserDashboard.fromJson(Map<String, dynamic> json) =>
+      _$UserDashboardFromJson(json);
 }
 
 @freezed
