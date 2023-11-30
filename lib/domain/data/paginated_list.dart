@@ -38,9 +38,9 @@ class PaginatedList<T extends Serializable> with ListMixin<T> {
   bool get isComplete =>
       pagination.page >= pagination.pageCount || pagination.pageSize == 0;
 
-  PaginationQuery nextPageQuery({int pageSize = 25}) => PaginationQuery(
+  PaginationQuery nextPageQuery() => PaginationQuery(
         page: pagination.page + 1,
-        pageSize: pageSize,
+        pageSize: pagination.pageSize,
       );
 
   PaginatedList<T> copyWith({

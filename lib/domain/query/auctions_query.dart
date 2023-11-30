@@ -1,5 +1,6 @@
 import 'package:estatesales_sdk/domain/data/auction_status.dart';
 import 'package:estatesales_sdk/domain/data/sort.dart';
+import 'package:estatesales_sdk/domain/query/keys/auction_key.dart';
 import 'package:estatesales_sdk/domain/query/pagination_query.dart';
 import 'package:estatesales_sdk/domain/query/query.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +13,7 @@ class AuctionsQuery with _$AuctionsQuery, Query {
 
   const factory AuctionsQuery({
     PaginationQuery? pagination,
-    Set<Sort>? sort,
+    Map<AuctionKey, SortOrder>? sort,
     Set<AuctionStatus>? statuses,
     String? search,
     int? companyId,
@@ -41,7 +42,11 @@ class AuctionsQuery with _$AuctionsQuery, Query {
 
   @override
   List? toSortQuery() {
-    return sort?.map((e) => e.toQuery()).toList();
+    if (sort == null || sort!.isEmpty) return null;
+
+    return sort!.entries
+        .map((it) => Sort(key: it.key.name, order: it.value).toQuery())
+        .toList();
   }
 
   @override

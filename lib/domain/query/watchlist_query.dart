@@ -1,7 +1,7 @@
 import 'package:estatesales_sdk/domain/data/sort.dart';
+import 'package:estatesales_sdk/domain/query/keys/lot_key.dart';
 import 'package:estatesales_sdk/domain/query/pagination_query.dart';
 import 'package:estatesales_sdk/domain/query/query.dart';
-import 'package:estatesales_sdk/domain/query/sort/lot_sort.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'watchlist_query.freezed.dart';
@@ -12,7 +12,7 @@ class WatchlistQuery with _$WatchlistQuery, Query {
 
   const factory WatchlistQuery({
     PaginationQuery? pagination,
-    Map<LotSort, SortOrder>? sort,
+    Map<LotKey, SortOrder>? sort,
     String? search,
   }) = _WatchlistQuery;
 
@@ -25,7 +25,7 @@ class WatchlistQuery with _$WatchlistQuery, Query {
 
   @override
   List? toSortQuery() {
-    if (sort == null) return null;
+    if (sort == null || sort!.isEmpty) return null;
 
     return sort!.entries
         .map((it) => Sort(key: it.key.name, order: it.value).toQuery())

@@ -1,4 +1,4 @@
-enum LotSort {
+enum LotKey {
   lotNumber,
   highestBid,
   biddingEndTime,

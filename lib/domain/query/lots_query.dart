@@ -1,4 +1,5 @@
 import 'package:estatesales_sdk/domain/data/sort.dart';
+import 'package:estatesales_sdk/domain/query/keys/lot_key.dart';
 import 'package:estatesales_sdk/domain/query/pagination_query.dart';
 import 'package:estatesales_sdk/domain/query/query.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +12,7 @@ class LotsQuery with _$LotsQuery, Query {
 
   const factory LotsQuery({
     PaginationQuery? pagination,
-    Set<Sort>? sort,
+    Map<LotKey, SortOrder>? sort,
     String? search,
     int? auctionId,
     @Default(false) bool withAuction,
@@ -30,7 +31,11 @@ class LotsQuery with _$LotsQuery, Query {
 
   @override
   List? toSortQuery() {
-    return sort?.map((e) => e.toQuery()).toList() ?? [];
+    if (sort == null || sort!.isEmpty) return null;
+
+    return sort!.entries
+        .map((it) => Sort(key: it.key.name, order: it.value).toQuery())
+        .toList();
   }
 
   @override
