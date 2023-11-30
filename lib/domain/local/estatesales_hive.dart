@@ -4,6 +4,7 @@ import 'package:estatesales_sdk/domain/data/bid_increment.dart';
 import 'package:estatesales_sdk/domain/data/category.dart';
 import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
+import 'package:estatesales_sdk/domain/data/country.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
@@ -15,6 +16,7 @@ import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/user_role_adapter.dart';
+import 'package:estatesales_sdk/domain/local/countries_store.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -43,8 +45,11 @@ class EstateSalesHive {
   static const lotBidsTypeId = 122;
   static const lotHighestBidTypeId = 123;
   static const lotHighestBidBidderTypeId = 124;
+  static const countryTypeId = 125;
+  static const countryStateTypeId = 126;
 
   final SessionsStore sessionStore = const SessionsStore();
+  final CountriesStore countriesStore = const CountriesStore();
 
   const EstateSalesHive();
 
@@ -66,6 +71,8 @@ class EstateSalesHive {
     Hive.registerAdapter(SessionAdapter());
     Hive.registerAdapter(UserAdapter());
     Hive.registerAdapter(UserTypeAdapter());
+    Hive.registerAdapter(CountryAdapter());
+    Hive.registerAdapter(CountryStateAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());
