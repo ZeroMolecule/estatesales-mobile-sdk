@@ -12,6 +12,10 @@ class CountryRepository {
     final stored = await _hive.countriesStore.getAll();
     if (stored.isNotEmpty) return stored;
 
+    return await fetchAll();
+  }
+
+  Future<List<Country>> fetchAll() async {
     final countries = await _api.countries.findMany();
     await _hive.countriesStore.putAll(countries);
     return countries;
