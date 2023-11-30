@@ -2,7 +2,7 @@ import 'package:estatesales_sdk/domain/data/country.dart';
 import 'package:hive/hive.dart';
 
 class CountriesStore {
-  static const _key = 'auction';
+  static const _key = 'country';
 
   const CountriesStore();
 

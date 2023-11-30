@@ -2,7 +2,7 @@ import 'package:estatesales_sdk/domain/data/session.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class SessionsStore {
-  static const _key = 'auction';
+  static const _key = 'session';
   static const _currentSessionKey = 'current_session';
 
   const SessionsStore();
