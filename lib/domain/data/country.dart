@@ -13,7 +13,7 @@ class Country with _$Country {
   const factory Country({
     @HiveField(0) required String name,
     @HiveField(1) required String code,
-    @HiveField(2) required List<CountryState>? states,
+    @HiveField(2) required List<CountryState>? state,
   }) = _Country;
 
   factory Country.fromJson(Map<String, dynamic> json) =>
