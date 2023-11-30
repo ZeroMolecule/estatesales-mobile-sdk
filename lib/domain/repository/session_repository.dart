@@ -1,4 +1,5 @@
 import 'package:estatesales_sdk/domain/data/session.dart';
+import 'package:estatesales_sdk/domain/data/user_dashboard.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
 
@@ -42,5 +43,9 @@ class SessionRepository {
 
   Future<void> delete() {
     return _hive.sessionStore.delete();
+  }
+
+  Future<UserDashboard> getUserDashboard() {
+    return _api.users.dashboard();
   }
 }
