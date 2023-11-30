@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:estatesales_sdk/domain/data/user.dart';
+import 'package:estatesales_sdk/domain/data/user_dashboard.dart';
 import 'package:estatesales_sdk/domain/query/users_query.dart';
 import 'package:retrofit/http.dart';
 
@@ -11,6 +12,9 @@ abstract class _UsersAPI {
 
   @GET('/users/me')
   Future<User> _me(@Queries() Map<String, dynamic> query);
+
+  @GET('/users/me/dashboard')
+  Future<UserDashboard> dashboard();
 }
 
 class UsersAPI extends __UsersAPI {
