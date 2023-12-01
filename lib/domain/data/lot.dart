@@ -2,6 +2,7 @@ import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
 import 'package:estatesales_sdk/domain/data/category.dart';
 import 'package:estatesales_sdk/domain/data/converters/remote_asset_enhanced_file_converter.dart';
+import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
 import 'package:estatesales_sdk/domain/data/remote_asset.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
@@ -32,6 +33,7 @@ class Lot with _$Lot, Serializable {
     BidIncrement? bidIncrement,
     @JsonKey(name: 'lotWatchers') LotWatchers? watchers,
     @JsonKey(name: 'lotBids') LotBids? bids,
+    Location? location,
   }) = _Lot;
 
   factory Lot.fromJson(Map<String, Object?> json) => _$LotFromJson(json);
