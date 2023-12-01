@@ -1,0 +1,4 @@
+enum BidKey {
+  amount,
+  createdAt,
+}

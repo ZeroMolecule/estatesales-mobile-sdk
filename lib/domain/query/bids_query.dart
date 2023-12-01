@@ -1,5 +1,5 @@
 import 'package:estatesales_sdk/domain/data/sort.dart';
-import 'package:estatesales_sdk/domain/query/keys/lot_key.dart';
+import 'package:estatesales_sdk/domain/query/keys/bid_key.dart';
 import 'package:estatesales_sdk/domain/query/pagination_query.dart';
 import 'package:estatesales_sdk/domain/query/query.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,25 +11,16 @@ class BidsQuery with _$BidsQuery, Query {
   const BidsQuery._();
 
   const factory BidsQuery({
+    int? lotId,
     PaginationQuery? pagination,
-    Map<LotKey, SortOrder>? sort,
-    String? search,
+    Map<BidKey, SortOrder>? sort,
   }) = _BidsQuery;
 
   @override
   Map? toFilterQuery() {
     return {
-      if (search?.isNotEmpty == true) 'title': {r'$containsi': search},
+      if (lotId != null) 'lot': {'id': lotId},
     };
-  }
-
-  @override
-  List? toSortQuery() {
-    if (sort == null || sort!.isEmpty) return null;
-
-    return sort!.entries
-        .map((it) => Sort(key: it.key.name, order: it.value).toQuery())
-        .toList();
   }
 
   @override
@@ -40,14 +31,16 @@ class BidsQuery with _$BidsQuery, Query {
   @override
   Object? toPopulateQuery() {
     return {
-      'category': true,
-      'bidIncrement': true,
-      'photos': {
-        'sort': ['order:asc'],
-        'populate': {'file': true}
-      },
-      'location': true,
-      'watchers': true,
+      'bidder': true,
     };
+  }
+
+  @override
+  List? toSortQuery() {
+    if (sort == null || sort!.isEmpty) return null;
+
+    return sort!.entries
+        .map((it) => Sort(key: it.key.name, order: it.value).toQuery())
+        .toList();
   }
 }
