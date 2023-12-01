@@ -1,6 +1,7 @@
 import 'package:estatesales_sdk/domain/data/lot.dart';
 import 'package:estatesales_sdk/domain/data/paginated_list.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
+import 'package:estatesales_sdk/domain/query/bids_query.dart';
 import 'package:estatesales_sdk/domain/query/lots_query.dart';
 import 'package:estatesales_sdk/domain/query/watchlist_query.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
@@ -51,7 +52,7 @@ class LotRepository {
   }
 
   Future<PaginatedList<Lot>> findUserActive({
-    LotsQuery query = const LotsQuery(),
+    BidsQuery query = const BidsQuery(),
   }) async {
     return await _api.lots.findUserActive(query: query);
   }

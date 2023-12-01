@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:estatesales_sdk/domain/data/lot.dart';
 import 'package:estatesales_sdk/domain/data/paginated_list.dart';
+import 'package:estatesales_sdk/domain/query/bids_query.dart';
 import 'package:estatesales_sdk/domain/query/lots_query.dart';
 import 'package:estatesales_sdk/domain/query/watchlist_query.dart';
 import 'package:estatesales_sdk/domain/remote/strapi/strapi.dart';
@@ -90,7 +91,7 @@ class LotsAPI extends __LotsAPI {
   }
 
   Future<PaginatedList<Lot>> findUserActive({
-    LotsQuery query = const LotsQuery(),
+    BidsQuery query = const BidsQuery(),
   }) async {
     final res = await _findUserActive(query.toQuery());
 
