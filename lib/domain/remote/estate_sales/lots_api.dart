@@ -42,6 +42,11 @@ abstract class _LotsAPI {
     @Path('id') int id,
     @Queries() Map<String, dynamic> queries,
   );
+
+  @GET('/lots/user-active')
+  Future<StrapiList> _findUserActive(
+    @Queries() Map<String, dynamic> queries,
+  );
 }
 
 class LotsAPI extends __LotsAPI {
@@ -82,5 +87,13 @@ class LotsAPI extends __LotsAPI {
     final res = await _removeFromWatchlist(lotId, const LotsQuery().toQuery());
 
     return Lot.fromJson(Strapi.parseData(res.raw));
+  }
+
+  Future<PaginatedList<Lot>> findUserActive({
+    LotsQuery query = const LotsQuery(),
+  }) async {
+    final res = await _findUserActive(query.toQuery());
+
+    return PaginatedList.fromStrapi(res, serialize: Lot.fromJson);
   }
 }

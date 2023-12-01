@@ -49,4 +49,10 @@ class LotRepository {
   Future<Lot> removeFromWatchlist(Lot lot) async {
     return await _api.lots.removeFromWatchlist(lot.id);
   }
+
+  Future<PaginatedList<Lot>> findUserActive({
+    LotsQuery query = const LotsQuery(),
+  }) async {
+    return await _api.lots.findUserActive(query: query);
+  }
 }
