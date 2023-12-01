@@ -46,7 +46,12 @@ class LotsQuery with _$LotsQuery, Query {
   @override
   Object? toPopulateQuery() {
     return {
-      if (withAuction) 'auction': true,
+      if (withAuction)
+        'auction': {
+          'populate': {
+            'location': true,
+          },
+        },
       'category': true,
       'bidIncrement': true,
       'photos': {
