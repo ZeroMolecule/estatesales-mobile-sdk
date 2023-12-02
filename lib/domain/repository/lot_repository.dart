@@ -59,7 +59,7 @@ class LotRepository {
     );
   }
 
-  Future<List<Bid>> findBids({
+  Future<PaginatedList<Bid>> findBids({
     BidsQuery query = const BidsQuery(),
   }) async {
     return await _api.bids.find(query: query);
