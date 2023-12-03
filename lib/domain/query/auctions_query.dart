@@ -12,7 +12,7 @@ class AuctionsQuery with _$AuctionsQuery, Query {
   const AuctionsQuery._();
 
   const factory AuctionsQuery({
-    PaginationQuery? pagination,
+    @Default(PaginationQuery.initial) PaginationQuery? pagination,
     Map<AuctionKey, SortOrder>? sort,
     Set<AuctionStatus>? statuses,
     String? search,

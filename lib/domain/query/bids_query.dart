@@ -12,7 +12,7 @@ class BidsQuery with _$BidsQuery, Query {
 
   const factory BidsQuery({
     int? lotId,
-    PaginationQuery? pagination,
+    @Default(PaginationQuery.initial) PaginationQuery? pagination,
     Map<BidKey, SortOrder>? sort,
   }) = _BidsQuery;
 

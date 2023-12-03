@@ -11,7 +11,7 @@ class UserActiveLotsQuery with _$UserActiveLotsQuery, Query {
   const UserActiveLotsQuery._();
 
   const factory UserActiveLotsQuery({
-    PaginationQuery? pagination,
+    @Default(PaginationQuery.initial) PaginationQuery? pagination,
     Map<LotKey, SortOrder>? sort,
     String? search,
   }) = _UserActiveLotsQuery;

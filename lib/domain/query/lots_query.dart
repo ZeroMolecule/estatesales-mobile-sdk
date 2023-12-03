@@ -11,7 +11,7 @@ class LotsQuery with _$LotsQuery, Query {
   const LotsQuery._();
 
   const factory LotsQuery({
-    PaginationQuery? pagination,
+    @Default(PaginationQuery.initial) PaginationQuery? pagination,
     Map<LotKey, SortOrder>? sort,
     String? search,
     int? auctionId,

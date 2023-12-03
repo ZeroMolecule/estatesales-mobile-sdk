@@ -11,7 +11,7 @@ class WatchlistQuery with _$WatchlistQuery, Query {
   const WatchlistQuery._();
 
   const factory WatchlistQuery({
-    PaginationQuery? pagination,
+    @Default(PaginationQuery.initial) PaginationQuery? pagination,
     Map<LotKey, SortOrder>? sort,
     String? search,
   }) = _WatchlistQuery;
