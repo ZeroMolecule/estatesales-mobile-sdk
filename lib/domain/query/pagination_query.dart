@@ -4,6 +4,8 @@ part 'pagination_query.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
 class PaginationQuery with _$PaginationQuery {
+  static const PaginationQuery initial = PaginationQuery(page: 1, pageSize: 7);
+
   const PaginationQuery._();
 
   const factory PaginationQuery({
