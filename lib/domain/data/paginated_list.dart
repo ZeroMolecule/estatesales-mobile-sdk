@@ -10,10 +10,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 class PaginatedList<T extends Serializable> with ListMixin<T> {
   final List<T> data;
   final Pagination pagination;
+  final List<int>? allIds;
 
   const PaginatedList({
     required this.data,
     required this.pagination,
+    this.allIds,
   });
 
   factory PaginatedList.empty() => const PaginatedList(
@@ -33,6 +35,7 @@ class PaginatedList<T extends Serializable> with ListMixin<T> {
       PaginatedList(
         data: strapi.map((json) => serialize(Strapi.parseData(json))).toList(),
         pagination: Pagination.fromStrapi(strapi.meta.pagination),
+        allIds: strapi.meta.ids,
       );
 
   bool get isComplete =>

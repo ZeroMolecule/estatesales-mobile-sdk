@@ -7,6 +7,7 @@ part 'strapi_meta.g.dart';
 class StrapiMeta with _$StrapiMeta {
   const factory StrapiMeta({
     required StrapiPagination pagination,
+    List<int>? ids,
   }) = _StrapiMeta;
 
   factory StrapiMeta.fromJson(Map<String, dynamic> json) =>
