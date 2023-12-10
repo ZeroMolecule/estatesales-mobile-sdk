@@ -60,6 +60,9 @@ class LotsQuery with _$LotsQuery, Query {
       },
       'location': true,
       'watchers': true,
+      'lotBids': {
+        'highestBid': {'bidder': true},
+      }
     };
   }
 }
