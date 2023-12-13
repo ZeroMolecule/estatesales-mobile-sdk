@@ -1,7 +1,7 @@
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
 import 'package:estatesales_sdk/domain/data/category.dart';
-import 'package:estatesales_sdk/domain/data/converters/remote_asset_enhanced_file_converter.dart';
+import 'package:estatesales_sdk/domain/data/converters/remote_asset_converter.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
 import 'package:estatesales_sdk/domain/data/remote_asset.dart';
@@ -23,7 +23,7 @@ class Lot with _$Lot, Serializable {
     required LotStatus status,
     int? lotNumber,
     // todo: add User? consignor
-    @RemoteAssetEnhancedListConverter() List<RemoteAssetEnhanced>? photos,
+    @remoteAssetsEnhanced List<RemoteAssetEnhanced>? photos,
     int? quantity,
     Auction? auction,
     Category? category,

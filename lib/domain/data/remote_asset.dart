@@ -28,29 +28,6 @@ sealed class RemoteAsset with _$RemoteAsset {
     @UriConverter() Uri? largeOrNull,
   }) = RemoteAssetEnhanced;
 
-  factory RemoteAsset.fromJson(Map<String, Object?> json) {
-    if (json.containsKey('file')) {
-      final file = _extractFile(json['file']);
-      return RemoteAsset.enhanced(
-        id: json['id'] as int,
-        order: json['order'] as int?,
-        visibility: _extractVisibility(json['visibility']),
-        uriOrNull: _extractUri(file),
-        thumbnailOrNull: _extractUri(file, 'thumbnail'),
-        smallOrNull: _extractUri(file, 'small'),
-        mediumOrNull: _extractUri(file, 'medium'),
-        largeOrNull: _extractUri(file, 'large'),
-      );
-    }
-    return RemoteAsset(
-      uri: _extractUri(json)!,
-      thumbnailOrNull: _extractUri(json, 'thumbnail'),
-      smallOrNull: _extractUri(json, 'small'),
-      mediumOrNull: _extractUri(json, 'medium'),
-      largeOrNull: _extractUri(json, 'large'),
-    );
-  }
-
   Uri? get uriOrNull {
     return when(
       (uri, _, __, ___, ____) => uri,
@@ -70,48 +47,6 @@ sealed class RemoteAsset with _$RemoteAsset {
   Uri get medium => mediumOrNull ?? requireUri;
 
   Uri get large => largeOrNull ?? requireUri;
-
-  Map<String, dynamic> toJson() {
-    return when(
-      (
-        uri,
-        thumbnailOrNull,
-        smallOrNull,
-        mediumOrNull,
-        largeOrNull,
-      ) =>
-          {
-        'url': uri.toString(),
-        'thumbnail': thumbnailOrNull?.toString(),
-        'small': smallOrNull?.toString(),
-        'medium': mediumOrNull?.toString(),
-        'large': largeOrNull?.toString(),
-      },
-      enhanced: (
-        id,
-        order,
-        visibility,
-        uri,
-        thumbnailOrNull,
-        smallOrNull,
-        mediumOrNull,
-        largeOrNull,
-      ) =>
-          {
-        'id': id,
-        'order': order,
-        'visibility': visibility?.name,
-        if (uri != null)
-          'file': {
-            'url': uri.toString(),
-            'thumbnail': thumbnailOrNull?.toString(),
-            'small': smallOrNull?.toString(),
-            'medium': mediumOrNull?.toString(),
-            'large': largeOrNull?.toString(),
-          },
-      },
-    );
-  }
 }
 
 Map<String, dynamic>? _extractFile(dynamic value) {
