@@ -3,6 +3,7 @@ library estatesales_sdk;
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
 import 'package:estatesales_sdk/domain/repository/auction_repository.dart';
+import 'package:estatesales_sdk/domain/repository/company_repository.dart';
 import 'package:estatesales_sdk/domain/repository/country_repository.dart';
 import 'package:estatesales_sdk/domain/repository/lot_repository.dart';
 import 'package:estatesales_sdk/domain/repository/session_repository.dart';
@@ -21,6 +22,7 @@ class EstateSalesSDK {
   late final lotRepository = LotRepository(_api, _hive);
   late final sessionRepository = SessionRepository(_api, _hive);
   late final countryRepository = CountryRepository(_api, _hive);
+  late final companyRepository = CompanyRepository(_api);
 
   EstateSalesSDK(
     this._api,
