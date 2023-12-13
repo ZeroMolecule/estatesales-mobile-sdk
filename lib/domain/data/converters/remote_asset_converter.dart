@@ -16,20 +16,17 @@ class RemoteAssetConverter extends JsonConverter<RemoteAsset?, dynamic> {
   RemoteAssetEnhanced? enhancedFromJson(Map<String, dynamic> json) {
     final file = json['file'];
     if (file is Map<String, dynamic>) {
-      final data = file['data'];
-      if (data is Map<String, dynamic>) {
-        if (data['url'] != null) {
-          return RemoteAssetEnhanced(
-            id: json['id'] as int,
-            order: json['order'] as int?,
-            visibility: _parseVisibility(json['visibility']),
-            uriOrNull: _parseUri(file),
-            thumbnailOrNull: _parseUri(file, 'thumbnail'),
-            smallOrNull: _parseUri(file, 'small'),
-            mediumOrNull: _parseUri(file, 'medium'),
-            largeOrNull: _parseUri(file, 'large'),
-          );
-        }
+      if (file['url'] != null) {
+        return RemoteAssetEnhanced(
+          id: json['id'] as int,
+          order: json['order'] as int?,
+          visibility: _parseVisibility(json['visibility']),
+          uriOrNull: _parseUri(file),
+          thumbnailOrNull: _parseUri(file, 'thumbnail'),
+          smallOrNull: _parseUri(file, 'small'),
+          mediumOrNull: _parseUri(file, 'medium'),
+          largeOrNull: _parseUri(file, 'large'),
+        );
       }
     }
     return null;
