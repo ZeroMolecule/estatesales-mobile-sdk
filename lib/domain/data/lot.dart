@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
 import 'package:estatesales_sdk/domain/data/category.dart';
@@ -68,6 +70,18 @@ class LotBids with _$LotBids {
 
   factory LotBids.fromJson(Map<String, Object?> json) =>
       _$LotBidsFromJson(json);
+
+  double? get proxyBid {
+    final user = userMaxBid;
+    final current = highestBid?.value;
+    if (user == null) {
+      return null;
+    }
+    if (current == null) {
+      return user;
+    }
+    return max(user, current);
+  }
 }
 
 @freezed
