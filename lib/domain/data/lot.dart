@@ -72,15 +72,15 @@ class LotBids with _$LotBids {
       _$LotBidsFromJson(json);
 
   double? get proxyBid {
-    final user = userMaxBid;
-    final current = highestBid?.value;
-    if (user == null) {
+    final userMaxBid = this.userMaxBid;
+    final highestBid = this.highestBid?.value;
+    if (userMaxBid == null) {
       return null;
     }
-    if (current == null) {
-      return user;
+    if (highestBid == null) {
+      return userMaxBid;
     }
-    return max(user, current);
+    return max(userMaxBid, highestBid);
   }
 }
 
