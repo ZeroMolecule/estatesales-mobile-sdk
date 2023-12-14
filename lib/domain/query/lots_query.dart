@@ -50,6 +50,7 @@ class LotsQuery with _$LotsQuery, Query {
         'auction': {
           'populate': {
             'location': true,
+            'premium': true,
           },
         },
       'category': true,

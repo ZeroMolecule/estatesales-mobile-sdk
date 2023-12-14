@@ -29,8 +29,30 @@ class Auction with _$Auction, Serializable {
     @HiveField(11) @remoteAsset required RemoteAsset? logo,
     @HiveField(12) required Location? location,
     @HiveField(13) required List<Lot>? lots,
+    @HiveField(14) required AuctionPremium? premium,
   }) = _Auction;
 
   factory Auction.fromJson(Map<String, Object?> json) =>
       _$AuctionFromJson(json);
+}
+
+@freezed
+@HiveType(typeId: EstateSalesHive.auctionPremiumTypeId)
+class AuctionPremium with _$AuctionPremium {
+  const AuctionPremium._();
+
+  const factory AuctionPremium({
+    @HiveField(0) required double amount,
+    @HiveField(1) required bool isFlat,
+  }) = _AuctionPremium;
+
+  factory AuctionPremium.fromJson(Map<String, Object?> json) =>
+      _$AuctionPremiumFromJson(json);
+
+  double calculate(double value) {
+    if (isFlat) {
+      return amount + value;
+    }
+    return value * (1 + amount / 100);
+  }
 }

@@ -47,6 +47,7 @@ class EstateSalesHive {
   static const lotHighestBidBidderTypeId = 124;
   static const countryTypeId = 125;
   static const countryStateTypeId = 126;
+  static const auctionPremiumTypeId = 127;
 
   final SessionsStore sessionStore = const SessionsStore();
   final CountriesStore countriesStore = const CountriesStore();
@@ -73,6 +74,7 @@ class EstateSalesHive {
     Hive.registerAdapter(UserTypeAdapter());
     Hive.registerAdapter(CountryAdapter());
     Hive.registerAdapter(CountryStateAdapter());
+    Hive.registerAdapter(AuctionPremiumAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());

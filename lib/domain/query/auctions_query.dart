@@ -56,6 +56,6 @@ class AuctionsQuery with _$AuctionsQuery, Query {
 
   @override
   Object? toPopulateQuery() {
-    return ['photos.file', 'logo', 'location', 'company'];
+    return ['photos.file', 'logo', 'location', 'company', 'premium'];
   }
 }

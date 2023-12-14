@@ -32,25 +32,17 @@ class EstateSalesSocket {
       );
       socket.onConnect((data) {
         print('Socket connected: ${socket.connected}');
-        if (_socketCompleter?.isCompleted != true) {
-          _socketCompleter?.complete(socket);
-        }
+        _socketCompleter?.tryComplete(socket);
       });
       socket.onDisconnect((data) {
         print('Socket disconnected: ${socket.connected}');
-        if (_socketCompleter?.isCompleted != true) {
-          _socketCompleter?.complete(
-            throw const WebSocketException(
-              'Socket disconnected before completed',
-            ),
-          );
-        } else {
+        if (_socketCompleter?.isCompleted == true) {
           socket.connect();
         }
       });
       socket.onConnectError((data) {
         print('Socket connect error: $data');
-        _socketCompleter?.completeError(data);
+        _socketCompleter?.tryCompleteError(data);
       });
 
       socket.connect();
@@ -91,6 +83,20 @@ class EstateSalesSocket {
     if (socket != null) {
       socket.dispose();
       _socketCompleter = null;
+    }
+  }
+}
+
+extension _CompleterExtensions<T> on Completer<T> {
+  void tryComplete(T data) {
+    if (!isCompleted) {
+      return complete(data);
+    }
+  }
+
+  void tryCompleteError(Object error, [StackTrace? stackTrace]) {
+    if (!isCompleted) {
+      return completeError(error, stackTrace);
     }
   }
 }
