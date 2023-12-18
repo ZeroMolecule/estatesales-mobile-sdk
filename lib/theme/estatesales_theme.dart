@@ -39,7 +39,7 @@ class EstateSalesTheme {
           ),
           headlineMedium: GoogleFonts.openSans(
             fontSize: 20,
-            height: 28 / 29,
+            height: 26 / 20,
             fontWeight: FontWeight.w700,
           ),
           headlineSmall: GoogleFonts.openSans(
