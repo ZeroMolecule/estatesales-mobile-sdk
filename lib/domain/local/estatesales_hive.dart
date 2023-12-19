@@ -5,6 +5,7 @@ import 'package:estatesales_sdk/domain/data/category.dart';
 import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/country.dart';
+import 'package:estatesales_sdk/domain/data/credit_card.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
@@ -48,6 +49,7 @@ class EstateSalesHive {
   static const countryTypeId = 125;
   static const countryStateTypeId = 126;
   static const auctionPremiumTypeId = 127;
+  static const creditCardTypeId = 128;
 
   final SessionsStore sessionStore = const SessionsStore();
   final CountriesStore countriesStore = const CountriesStore();
@@ -75,6 +77,7 @@ class EstateSalesHive {
     Hive.registerAdapter(CountryAdapter());
     Hive.registerAdapter(CountryStateAdapter());
     Hive.registerAdapter(AuctionPremiumAdapter());
+    Hive.registerAdapter(CreditCardAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());

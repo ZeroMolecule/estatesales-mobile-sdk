@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
+import 'package:estatesales_sdk/domain/data/credit_card.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,6 +22,7 @@ class User with _$User {
     @HiveField(5) List<UserRole>? roles,
     @HiveField(6) Company? company,
     @HiveField(7) @Default('') String uuid,
+    @HiveField(8) List<CreditCard>? creditCards,
   }) = _User;
 
   String get name {
@@ -32,6 +35,10 @@ class User with _$User {
 
   bool get isMasterAdmin {
     return type == UserType.masterAdmin;
+  }
+
+  bool? get validCreditCard {
+    return creditCards?.firstWhereOrNull((element) => element.enabled) != null;
   }
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
