@@ -1,4 +1,6 @@
+import 'package:estatesales_sdk/domain/data/app_settings.dart';
 import 'package:estatesales_sdk/domain/data/session.dart';
+import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/data/user_dashboard.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales_api.dart';
@@ -31,6 +33,19 @@ class SessionRepository {
       return session;
     }
     return null;
+  }
+
+  Future<User> fetchUser() async {
+    final session = await _hive.sessionStore.get();
+    final user = await _api.users.me();
+    await _hive.sessionStore.put(session!.copyWith(user: user));
+    return user;
+  }
+
+  Future<AppSettings> fetchAppSettings() async {
+    final appSettings = await _api.appSettings.find();
+    await _hive.appSettingsStore.put(appSettings);
+    return appSettings;
   }
 
   Future<Session?> get() {

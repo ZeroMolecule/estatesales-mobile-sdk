@@ -1,3 +1,4 @@
+import 'package:estatesales_sdk/domain/data/app_settings.dart';
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/auction_status.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
@@ -5,6 +6,7 @@ import 'package:estatesales_sdk/domain/data/category.dart';
 import 'package:estatesales_sdk/domain/data/commission.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/country.dart';
+import 'package:estatesales_sdk/domain/data/credit_card.dart';
 import 'package:estatesales_sdk/domain/data/end_time_extension_method.dart';
 import 'package:estatesales_sdk/domain/data/location.dart';
 import 'package:estatesales_sdk/domain/data/lot_status.dart';
@@ -16,6 +18,7 @@ import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/user_role_adapter.dart';
+import 'package:estatesales_sdk/domain/local/app_settings_store.dart';
 import 'package:estatesales_sdk/domain/local/countries_store.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -48,9 +51,12 @@ class EstateSalesHive {
   static const countryTypeId = 125;
   static const countryStateTypeId = 126;
   static const auctionPremiumTypeId = 127;
+  static const creditCardTypeId = 128;
+  static const appSettingsTypeId = 129;
 
   final SessionsStore sessionStore = const SessionsStore();
   final CountriesStore countriesStore = const CountriesStore();
+  final AppSettingsStore appSettingsStore = const AppSettingsStore();
 
   const EstateSalesHive();
 
@@ -75,6 +81,8 @@ class EstateSalesHive {
     Hive.registerAdapter(CountryAdapter());
     Hive.registerAdapter(CountryStateAdapter());
     Hive.registerAdapter(AuctionPremiumAdapter());
+    Hive.registerAdapter(CreditCardAdapter());
+    Hive.registerAdapter(AppSettingsAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());
