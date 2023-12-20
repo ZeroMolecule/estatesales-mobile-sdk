@@ -1,13 +1,14 @@
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
+import 'package:estatesales_sdk/domain/remote/strapi/serializable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
 part 'credit_card.freezed.dart';
 part 'credit_card.g.dart';
 
-@Freezed(fromJson: false, toJson: false)
+@freezed
 @HiveType(typeId: EstateSalesHive.creditCardTypeId)
-class CreditCard with _$CreditCard {
+class CreditCard with _$CreditCard, Serializable {
   const CreditCard._();
 
   const factory CreditCard({
@@ -21,29 +22,6 @@ class CreditCard with _$CreditCard {
     @HiveField(7) required bool enabled,
   }) = _CreditCard;
 
-  factory CreditCard.fromJson(Map<String, dynamic> json) {
-    return CreditCard(
-      id: json['id'] as int,
-      cardId: json['cardId'] as String,
-      cardBrand: json['cardBrand'] as String,
-      expMonth: json['expMonth'] as int,
-      expYear: json['expYear'] as int,
-      lastFourDigits: json['lastFourDigits'] as String,
-      cardholderName: json['cardholderName'] as String?,
-      enabled: json['enabled'] as bool,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'cardId': cardId,
-      'cardBrand': cardBrand,
-      'expMonth': expMonth,
-      'expYear': expYear,
-      'lastFourDigits': lastFourDigits,
-      'cardholderName': cardholderName,
-      'enabled': enabled,
-    };
-  }
+  factory CreditCard.fromJson(Map<String, dynamic> json) =>
+      _$CreditCardFromJson(json);
 }
