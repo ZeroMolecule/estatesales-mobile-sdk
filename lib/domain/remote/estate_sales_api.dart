@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
+import 'package:estatesales_sdk/domain/remote/estate_sales/app_settings_api.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales/auctions_api.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales/auth_api.dart';
 import 'package:estatesales_sdk/domain/remote/estate_sales/bids_api.dart';
@@ -17,6 +18,7 @@ class EstateSalesAPI {
   final BidsAPI bids;
   final CountriesAPI countries;
   final CompaniesAPI companies;
+  final AppSettingsAPI appSettings;
 
   const EstateSalesAPI._(
     this.auctions,
@@ -26,6 +28,7 @@ class EstateSalesAPI {
     this.bids,
     this.countries,
     this.companies,
+    this.appSettings,
   );
 
   factory EstateSalesAPI(Uri baseUri) {
@@ -46,6 +49,7 @@ class EstateSalesAPI {
     final bids = BidsAPI(dio);
     final countries = CountriesAPI(dio);
     final companies = CompaniesAPI(dio);
+    final appSettings = AppSettingsAPI(dio);
 
     return EstateSalesAPI._(
       auctions,
@@ -55,6 +59,7 @@ class EstateSalesAPI {
       bids,
       countries,
       companies,
+      appSettings,
     );
   }
 }

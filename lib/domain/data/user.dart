@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:estatesales_sdk/domain/data/company.dart';
 import 'package:estatesales_sdk/domain/data/credit_card.dart';
 import 'package:estatesales_sdk/domain/local/estatesales_hive.dart';
@@ -37,8 +36,8 @@ class User with _$User {
     return type == UserType.masterAdmin;
   }
 
-  bool? get validCreditCard {
-    return creditCards?.firstWhereOrNull((element) => element.enabled) != null;
+  bool get hasValidCreditCard {
+    return creditCards?.any((it) => it.enabled) ?? false;
   }
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);

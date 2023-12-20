@@ -1,3 +1,4 @@
+import 'package:estatesales_sdk/domain/data/app_settings.dart';
 import 'package:estatesales_sdk/domain/data/auction.dart';
 import 'package:estatesales_sdk/domain/data/auction_status.dart';
 import 'package:estatesales_sdk/domain/data/bid_increment.dart';
@@ -17,6 +18,7 @@ import 'package:estatesales_sdk/domain/data/user.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/remote_asset_enhanced_adapter.dart';
 import 'package:estatesales_sdk/domain/local/adapters/user_role_adapter.dart';
+import 'package:estatesales_sdk/domain/local/app_settings_store.dart';
 import 'package:estatesales_sdk/domain/local/countries_store.dart';
 import 'package:estatesales_sdk/domain/local/sessions_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -50,9 +52,11 @@ class EstateSalesHive {
   static const countryStateTypeId = 126;
   static const auctionPremiumTypeId = 127;
   static const creditCardTypeId = 128;
+  static const appSettingsTypeId = 129;
 
   final SessionsStore sessionStore = const SessionsStore();
   final CountriesStore countriesStore = const CountriesStore();
+  final AppSettingsStore appSettingsStore = const AppSettingsStore();
 
   const EstateSalesHive();
 
@@ -78,6 +82,7 @@ class EstateSalesHive {
     Hive.registerAdapter(CountryStateAdapter());
     Hive.registerAdapter(AuctionPremiumAdapter());
     Hive.registerAdapter(CreditCardAdapter());
+    Hive.registerAdapter(AppSettingsAdapter());
 
     // custom
     Hive.registerAdapter(RemoteAssetAdapter());
