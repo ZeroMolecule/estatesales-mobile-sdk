@@ -161,7 +161,10 @@ class EstateSalesTheme {
     );
 
     return EstateSalesTheme._(
-        themeData, iconButtonStyle, secondaryIconButtonStyle);
+      themeData,
+      iconButtonStyle,
+      secondaryIconButtonStyle,
+    );
   }
 }
 
