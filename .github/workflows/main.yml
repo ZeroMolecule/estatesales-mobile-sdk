@@ -26,7 +26,7 @@ jobs:
           git fetch
           git checkout -b main-pub || git checkout main-pub
           git merge main
-          git pull origin main-pub
+          git pull origin main-pub || echo "No remote branch main-pub"
 
       - name: Update .gitignore
         run: |
