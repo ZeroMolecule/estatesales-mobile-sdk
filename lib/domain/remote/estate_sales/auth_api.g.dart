@@ -63,7 +63,7 @@ class __AuthAPI implements _AuthAPI {
     )
         .compose(
           _dio.options,
-          '/auth/users/${id}',
+          '/users/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
