@@ -60,6 +60,13 @@ class SessionRepository {
     return _hive.sessionStore.delete();
   }
 
+  Future<void> deleteUser() async {
+    final session = await _hive.sessionStore.get();
+    final id = session!.user.id;
+    await _api.auth.delete(id);
+    await _hive.sessionStore.delete();
+  }
+
   Future<UserDashboard> getUserDashboard() {
     return _api.users.dashboard();
   }

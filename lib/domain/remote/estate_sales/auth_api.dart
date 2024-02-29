@@ -14,6 +14,9 @@ abstract class _AuthAPI {
     @Body() Map<String, dynamic> map,
     @Queries() Map<String, dynamic> queries,
   );
+
+  @DELETE('/auth/users/{id}')
+  Future<void> delete(@Path('id') int id);
 }
 
 class AuthAPI extends __AuthAPI {
