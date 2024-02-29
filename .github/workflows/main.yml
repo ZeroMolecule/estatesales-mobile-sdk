@@ -35,7 +35,7 @@ jobs:
           sed -i '/\*.freezed.dart/d' .gitignore
           sed -i '/\*.gr.dart/d' .gitignore
           sed -i '/\/lib\/generated/d' .gitignore
-          git add .gitignore
+          git add --all .
           git diff --staged --exit-code || git commit -m "Update .gitignore for main-pub branch"
 
 
