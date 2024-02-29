@@ -23,7 +23,7 @@ class __AuthAPI implements _AuthAPI {
     Map<String, dynamic> map,
     Map<String, dynamic> queries,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
@@ -52,10 +52,10 @@ class __AuthAPI implements _AuthAPI {
 
   @override
   Future<void> delete(int id) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,

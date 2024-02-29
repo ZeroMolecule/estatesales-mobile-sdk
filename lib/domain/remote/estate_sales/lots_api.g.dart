@@ -23,11 +23,11 @@ class __LotsAPI implements _LotsAPI {
     int auctionId,
     Map<String, dynamic> queries,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiList>(Options(
       method: 'GET',
@@ -54,11 +54,11 @@ class __LotsAPI implements _LotsAPI {
     int id,
     Map<String, dynamic> queries,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiResponse>(Options(
       method: 'GET',
@@ -82,11 +82,11 @@ class __LotsAPI implements _LotsAPI {
 
   @override
   Future<StrapiList> _findWatchlist(Map<String, dynamic> queries) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiList>(Options(
       method: 'GET',
@@ -113,11 +113,11 @@ class __LotsAPI implements _LotsAPI {
     int id,
     Map<String, dynamic> queries,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiResponse>(Options(
       method: 'GET',
@@ -144,11 +144,11 @@ class __LotsAPI implements _LotsAPI {
     int id,
     Map<String, dynamic> queries,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiResponse>(Options(
       method: 'GET',
@@ -172,11 +172,11 @@ class __LotsAPI implements _LotsAPI {
 
   @override
   Future<StrapiList> _findUserActive(Map<String, dynamic> queries) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiList>(Options(
       method: 'GET',

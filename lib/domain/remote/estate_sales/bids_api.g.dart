@@ -20,7 +20,7 @@ class __BidsAPI implements _BidsAPI {
 
   @override
   Future<void> _create(Map<String, dynamic> map) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -45,11 +45,11 @@ class __BidsAPI implements _BidsAPI {
 
   @override
   Future<StrapiList> _find(Map<String, dynamic> queries) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<StrapiList>(Options(
       method: 'GET',
